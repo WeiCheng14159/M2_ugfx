@@ -50,7 +50,7 @@
 	static msg_t GWinStreamGetTimed(void *ip, systime_t timeout) { (void)ip; (void)timeout; return RDY_OK; }
 	static size_t GWinStreamWriteTimed(void *ip, const uint8_t *bp, size_t n, systime_t time) { (void)time; gwinPutCharArray(Stream2GWindow(ip), (const char *)bp, n); return RDY_OK; }
 	static size_t GWinStreamReadTimed(void *ip, uint8_t *bp, size_t n, systime_t time) { (void)ip; (void)bp; (void)n; (void)time; return 0; }
-#elif CH_KERNEL_MAJOR == 3
+#elif CH_KERNEL_MAJOR == 3 || CH_KERNEL_MAJOR == 4
     static size_t GWinStreamWrite(void *ip, const uint8_t *bp, size_t n) { gwinPutCharArray(Stream2GWindow(ip), (const char *)bp, n); return MSG_OK; }
     static size_t GWinStreamRead(void *ip, uint8_t *bp, size_t n) { (void)ip; (void)bp; (void)n; return 0; }
     static msg_t GWinStreamPut(void *ip, uint8_t b) { gwinPutChar(Stream2GWindow(ip), (char)b); return MSG_OK; }
